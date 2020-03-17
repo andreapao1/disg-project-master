@@ -1,4 +1,4 @@
-# disg-web
+# Dialect-web
 
 ## Project setup
 ```

@@ -10,7 +10,7 @@
   </div>
 </template>
 
- <script>
+<script>
   import firebase from 'firebase';
   import { errorMessages } from '../firebase';
   export default {
@@ -27,22 +27,23 @@
       signUp: function() {
         if(this.password === this.password_confirmation) {
           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-            (user) => {
-              this.$router.replace('home')
-            },
-            (err) => {
-              alert('Oops. ' + errorMessages[err.code])
-            }
+           // eslint-disable-next-line no-unused-vars
+                  (user) => {
+                    this.$router.replace('home')
+                  },
+                  (err) => {
+                    alert('Oops. ' + errorMessages[err.code])
+                  }
           );
         } else {
           this.error_message = true;
         }
-      } 
+      }
     }
   }
 </script>
 
- <style scoped>
+<style scoped>
   .sign-up {
     margin-top: 40px;
   }

@@ -6,11 +6,11 @@ const
     DialogflowApp = require('actions-on-google').DialogflowApp,
     moment = require('moment'),
     firebase = require("./firebase/credentials");
-    const DEFAULT_REPLY_RESPONSE = "Selecciona una opción:";
-    moment.locale("es")
-    const DEFAULT_REPLY_CHIPS = ["Programar Entrevista‍", "Vacantes", "Turnos Laborales","¿Qué es Activa?","Ubicación📍","Horarios Entrevista"];
-    const DETAULT_QUICK_RESPONSE_OBJECT = {"platform": "FACEBOOK","quickReplies": { "title": DEFAULT_REPLY_RESPONSE, "quickReplies": DEFAULT_REPLY_CHIPS }};
-    let now = moment().format('dddd, D MMMM YYYY');
+const DEFAULT_REPLY_RESPONSE = "Selecciona una opción:";
+moment.locale("es")
+const DEFAULT_REPLY_CHIPS = ["Programar Entrevista‍", "Vacantes", "Turnos Laborales","¿Qué es Activa?","Ubicación📍","Horarios Entrevista"];
+const DETAULT_QUICK_RESPONSE_OBJECT = {"platform": "FACEBOOK","quickReplies": { "title": DEFAULT_REPLY_RESPONSE, "quickReplies": DEFAULT_REPLY_CHIPS }};
+let now = moment().format('dddd, D MMMM YYYY');
 exports.functions = functions.https.onRequest((request, response) => {
     console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
     if (request.body.queryResult) {
@@ -35,7 +35,7 @@ function processV2Request(request, response) {
         method: 'GET',
         url:`https://graph.facebook.com/v5.0/${facebook_userId}/`,
         qs:{
-            access_token: 'EAAQ2A0ZAz3j0BAIKsaJ49ZBZAsMUz4DdWizrHppPzqMVZBPgypdEkdRLeTZAWW2xK18LqWmT7GntA7qd6oYtSqvUZCGIWExBmfnuKe2uJpk0OnfIZBXQOEkvBbhyEbrTOnRifQKsXHfbJT0KQZAZBbacSrRZBUukdlDOa4Ml9lbDbmAi06jZBi9zhrb'
+            access_token: 'EAAO9PkmsijMBAFCvOcUpZAC8TWkpvQ7Gh9XTot7uZBk57lJDchNZARDf3FRprZCbKDQQBFFC2mxX1lIGNm6VwspEkZC34pdpI4ZChauXllyWxvhsdU3kiZBoOAWS6zOZA9jAlUgwV0x2NoTZCgWrNgCVANNULDCDYenrD0a97o7ZC6UBsxuwSovEbA'
         },
     };
     const actionHandlers = {
@@ -53,37 +53,37 @@ function processV2Request(request, response) {
             console.log("Welcome Intent");
             const request = require("request");
             return new Promise (resolve => {
-                    request(options, (error, response, body) => {
-                        if (error) {
-                            console.log(error);
-                            resolve();
-                        }
-                        console.log("Facebook USER");
-                        const info = JSON.parse(body);
-                        console.log(info);
-                        let responseToUser = {
-                            "fulfillmentMessages": [
-                                {
-                                    "platform": "FACEBOOK",
-                                    "text": {
-                                        "text": [
-                                            `¡Hola ${info.first_name}! Soy el robot de Activa 👱‍‍ y estoy aquí para ayudarte a encontrar empleo.`
-                                        ]
-                                    },
+                request(options, (error, response, body) => {
+                    if (error) {
+                        console.log(error);
+                        resolve();
+                    }
+                    console.log("Facebook USER");
+                    const info = JSON.parse(body);
+                    console.log(info);
+                    let responseToUser = {
+                        "fulfillmentMessages": [
+                            {
+                                "platform": "FACEBOOK",
+                                "text": {
+                                    "text": [
+                                        `¡Hola ${info.first_name}! Soy el robot de Activa 👱‍‍ y estoy aquí para ayudarte a encontrar empleo.`
+                                    ]
                                 },
-                                {
-                                    "platform": "FACEBOOK",
-                                    "quickReplies": {
-                                        "title": "Mira las siguientes opciones que tengo para ti. ¿Qué vamos a hacer?",
-                                        "quickReplies": DEFAULT_REPLY_CHIPS
-                                    }
+                            },
+                            {
+                                "platform": "FACEBOOK",
+                                "quickReplies": {
+                                    "title": "Mira las siguientes opciones que tengo para ti. ¿Qué vamos a hacer?",
+                                    "quickReplies": DEFAULT_REPLY_CHIPS
                                 }
-                            ]
-                        };
-                        sendResponse(responseToUser);
-                    });
+                            }
+                        ]
+                    };
+                    sendResponse(responseToUser);
                 });
-            },
+            });
+        },
         'activa.general': () => {
             console.log("General Intent");
             let responseToUser = {
@@ -643,7 +643,7 @@ function uploadSecond(user_info, phone_number, email) { //This is for basic face
     return firebase.database().ref("usuarios_fb/" + user_info.id).update(personalInfo);
 }
 function uploadThird(user_info, experience_time) { //This is for basic facebook information
-   return firebase.database().ref("usuarios_fb/" + user_info.id).update({"experience_time": `${experience_time}`});
+    return firebase.database().ref("usuarios_fb/" + user_info.id).update({"experience_time": `${experience_time}`});
 }
 function uploadFourth(user_info, area) { //This is for basic facebook information
     return firebase.database().ref("usuarios_fb/" + user_info.id).update({"experience_area": `${area}`});

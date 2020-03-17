@@ -1,14 +1,13 @@
 import { initializeApp } from "firebase";
 
 const app = initializeApp({
-  apiKey: "AIzaSyBf6fM-NPpdpQ6M1_WXsYDKu5xshnOryjA",
-    authDomain: "dialectbotreclutamiento.firebaseapp.com",
-    databaseURL: "https://dialectbotreclutamiento.firebaseio.com",
-    projectId: "dialectbotreclutamiento",
-    storageBucket: "dialectbotreclutamiento.appspot.com",
-    messagingSenderId: "436017582027",
-    appId: "1:436017582027:web:5c1db8448a23694f51304e",
-    measurementId: "G-3RDYHM8WWV"
+  apiKey: "AIzaSyAoa44KA10-7GxuSoKNWDrnStcBBa0Ru7w",
+  authDomain: "dialectbotreclutamiento-shginm.firebaseapp.com",
+  databaseURL: "https://dialectbotreclutamiento-shginm.firebaseio.com",
+  projectId: "dialectbotreclutamiento-shginm",
+  storageBucket: "dialectbotreclutamiento-shginm.appspot.com",
+  messagingSenderId: "691851747789",
+  appId: "1:691851747789:web:39b2aef8c42d2fb4b4e484"
 });
 
 export const db = app.database();

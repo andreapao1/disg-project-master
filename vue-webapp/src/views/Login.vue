@@ -1,7 +1,7 @@
 <template>
 
   <div class="login">
-    
+
     <h3>Inicia Sesión</h3>
     <div class="form">
       <input type="text" v-model="email" placeholder="Correo electrónico"><br>
@@ -27,7 +27,7 @@
     methods: {
       login: function() {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-          (user) => {
+          () => {
             this.$router.replace('home')
           },
           (err) => {

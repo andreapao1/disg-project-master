@@ -1,3 +1,3 @@
-# disg-project
+# Dialect Dashboard
 
-* URL: https://bot-disg.firebaseapp.com/
+* URL: https://dialectbotreclutamiento-shginm.firebaseio.com/
